@@ -32,6 +32,10 @@ Route::get('/test-db', function () {
 
 Route::post('/koleksi/store', [KoleksiController::class, 'store']);
 
+Route::get('/', function () {
+    return redirect('/koleksi/tambah');
+});
+
 Route::get('/koleksi/tambah', function () {
     return view('tambah_koleksi');
 });
