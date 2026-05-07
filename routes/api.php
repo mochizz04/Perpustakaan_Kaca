@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\Api\LaporanPklController;
 use App\Http\Controllers\Pustakawan\BukuController;
+use App\Http\Controllers\Api\BookingController;
 
 Route::get('/peminjaman', [App\Http\Controllers\Api\PeminjamanController::class, 'index']);
 
@@ -90,3 +91,7 @@ Route::post('/pengembalian/proses/{id}', [App\Http\Controllers\Api\PeminjamanCon
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::get('/booking', [BookingController::class, 'index']);
+Route::post('/booking', [BookingController::class, 'store']);
+Route::put('/booking/cancel/{id}', [BookingController::class, 'cancel']);

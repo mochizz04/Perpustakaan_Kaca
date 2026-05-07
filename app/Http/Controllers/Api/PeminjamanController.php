@@ -39,6 +39,13 @@ class PeminjamanController extends Controller
             if ($request->status && $request->status !== 'Semua') {
                 $query->where('peminjaman.STATUS_PEMINJAMAN', $request->status);
             }
+            if ($request->search) {
+                $query->where(function ($q) use ($request) {
+                    $q->where('buku.JUDUL_KOLEKSI', 'like', '%' . $request->search . '%')
+                    ->orWhere('siswa.NAMA_SISWA_TETAP', 'like', '%' . $request->search . '%')
+                    ->orWhere('siswa.NISN_SISWA', 'like', '%' . $request->search . '%');
+                });
+            }
 
             return response()->json($query->orderBy('peminjaman.TGL_PINJAM', 'desc')->get());
             
