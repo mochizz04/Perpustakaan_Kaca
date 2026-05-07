@@ -5,6 +5,7 @@ use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\Api\LaporanController;
 use App\Http\Controllers\Pustakawan\BukuController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BookingViewController;
 
 
 Route::get('/generate-barcode', [KoleksiController::class, 'index']);
@@ -29,3 +30,7 @@ Route::get('/', function () {
 });
 Route::get('/pustakawan/pengunjung', [\App\Http\Controllers\PengunjungController::class, 'index']);
 Route::get('/pustakawan/pengunjung/search', [\App\Http\Controllers\PengunjungController::class, 'search']);
+
+Route::get('/booking', [BookingViewController::class, 'index']);
+Route::post('/booking/store', [BookingViewController::class, 'store']);
+Route::put('/booking/cancel/{id}', [BookingViewController::class, 'cancel']);
